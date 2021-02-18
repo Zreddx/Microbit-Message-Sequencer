@@ -1,16 +1,16 @@
 // Settings
-let message = "Sample" //Type your message here
-let speed = 400 // Higher = slower
-let channel = 0 // Radio channel, set to 0 for default (only works when mode is set to WIRELESS)
-let mode = "LOCAL" // LOCAL = Displays on this microbit | WIRELESS = Diplays on other microbits using radio function.
+let message = "Sample" // The message to be sequenced
+let delay = 4 // Multiple of 100ms - higher is slower
+let channel = 0 // Radio channel for wireless mode
+let mode = "LOCAL" // LOCAL = Sequences locally - WIRELESS = Sequences wirelessly via the radio function
 
-// Main
+// Main logic
 input.onButtonPressed(Button.A, () => {
     if (mode == "LOCAL") {
         let messageLength = message.length
         for (let i = 0; i < messageLength; i++) {
             basic.showString(message.charAt(i))
-            basic.pause(speed)
+            basic.pause(delay * 100)
             basic.clearScreen()
             basic.pause(50)
         }
@@ -22,14 +22,8 @@ input.onButtonPressed(Button.A, () => {
         for (let i = 0; i < messageLength; i++) {
             basic.clearScreen()
             radio.sendString(message.charAt(i))
-            basic.pause(speed)
+            basic.pause(delay * 100)
             basic.clearScreen()
         }
     }
 })
-
-////////////////////////////////
-// Made by IAO Software       //
-// IAO.IS                     //
-// Version: 2.0.1             //
-////////////////////////////////
